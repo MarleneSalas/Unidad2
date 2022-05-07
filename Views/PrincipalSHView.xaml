@@ -1,0 +1,83 @@
+﻿<Window x:Class="Unidad2.Views.PrincipalSHView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Unidad2.Views" 
+        xmlns:viewmodels="clr-namespace:Unidad2.ViewModels"
+        mc:Ignorable="d"
+        Height="620" Width="850" Background="#F2F2F2">
+
+    <Window.DataContext>
+        <viewmodels:SuperHeroesViewModel></viewmodels:SuperHeroesViewModel>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate x:Key="Plantilla">
+            <local:SuperHeroeControl></local:SuperHeroeControl>
+        </DataTemplate>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+            <Setter Property="Foreground" Value="#404040"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+            <Setter Property="Foreground" Value="#404040"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#404040"></Setter>
+            <Setter Property="Foreground" Value="LightYellow"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+        </Style>
+    </Window.Resources>
+    
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Top" Margin="5">
+            <Image Height="70" Width="70" Margin="0,0,5,0" Source="https://static.wikia.nocookie.net/marvelcinematicuniverse/images/9/9b/S.H.I.E.L.D._logo_NEW.png/revision/latest/scale-to-width-down/350?cb=20190422151215">
+            </Image>
+            <StackPanel>
+                <Label FontSize="30" FontWeight="Bold" Margin="0">D. E. S. H.</Label>
+                <Label FontSize="20" FontWeight="Bold" Margin="0">División Estratégica para Super Héroes</Label>
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel DockPanel.Dock="Bottom">
+             <ListBox x:Name="lstLista" SelectedItem="{Binding SuperHeroe}" ItemTemplate="{StaticResource Plantilla}"  ItemsSource="{Binding Heroes}"  HorizontalContentAlignment="Right" >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+            </ListBox>
+        <Button Command="{Binding ShowCommand}" CommandParameter="Agregar">Agregar nuevo Super Héroe</Button>
+        </StackPanel>
+
+        <ContentControl>
+
+            <ContentControl.Resources>
+                <local:AgregarEditarView x:Key="agregarEditar"></local:AgregarEditarView>
+                <local:DetallesView x:Key="detalles"></local:DetallesView>
+                <local:EditarView x:Key="editar"></local:EditarView>
+            </ContentControl.Resources>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Vista}" Value="Ver">
+                            <Setter Property="Content" Value="{StaticResource detalles}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}" Value="Agregar">
+                            <Setter Property="Content" Value="{StaticResource agregarEditar}"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}" Value="Editar">
+                            <Setter Property="Content" Value="{StaticResource editar}"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </DockPanel>
+</Window>

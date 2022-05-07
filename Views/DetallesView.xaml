@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Unidad2.Views.DetallesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Unidad2.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Foreground" Value="#404040"></Setter>
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+            <Setter Property="Foreground" Value="#404040"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Width" Value="140"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Background" Value="#404040"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Setter Property="Content">
+                <Setter.Value>
+                    <DockPanel>
+                        <TextBlock FontWeight="Bold" Padding="20,4,0,0" DockPanel.Dock="Top" FontSize="30"  Background="#404040" Foreground="White"
+                   Height="40" Text="{Binding SuperHeroe.Aka}">
+                </TextBlock>
+                        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Bottom" Margin="0,0,0,5" >
+                            <Button Command="{Binding CancelarCommand}">Regresar</Button>
+                            <Button Command="{Binding EliminarCommand}" CommandParameter="{Binding ElementName=lstLista,Path=SelectedItem}" Foreground="SandyBrown">Eliminar registro</Button>
+                            <Button Command="{Binding ShowCommand}" CommandParameter="Editar">Editar</Button>
+                        </WrapPanel>
+                        <WrapPanel Height="250">
+                            <StackPanel DockPanel.Dock="Left" Margin="20,5,5,0" Width="380" >
+                                <TextBlock FontWeight="Bold">Nombre:</TextBlock>
+                                <TextBlock Margin="0,0,0,10" Text="{Binding SuperHeroe.Nombre}"></TextBlock>
+                                <TextBlock FontWeight="Bold">Origen:</TextBlock>
+                                <TextBlock Height="180"  TextWrapping="Wrap" TextAlignment="Left" Text="{Binding SuperHeroe.Origen}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Margin="5" Width="180">
+                                <TextBlock FontWeight="Bold">Ubicación actual:</TextBlock>
+                                <TextBlock Margin="0,0,0,10" Text="{Binding SuperHeroe.Ubicacion}"></TextBlock>
+                                <TextBlock FontWeight="Bold">Habilidad(es):</TextBlock>
+                                <TextBlock Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding SuperHeroe.Habilidades}"></TextBlock>
+                            </StackPanel>
+                            <Image Height="200"  Margin="10" Source="{Binding SuperHeroe.Fotografia}"></Image>
+                        </WrapPanel>
+                    </DockPanel>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SuperHeroe}" Value="{x:Null}">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <TextBlock Margin="20" FontFamily="Bahnschrift" TextAlignment="Center" FontSize="25" Foreground="#404040" TextWrapping="Wrap"
+                               VerticalAlignment="Center">Para visualizar la información registrada, seleccionar una de las "tarjetas de identificación" que se encuentran en la parte inferior de la pagina.</TextBlock>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Style>
+
+</UserControl>

@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="Unidad2.Views.EditarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Unidad2.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+            <Setter Property="Foreground" Value="#404040"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Foreground" Value="#404040"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Margin" Value="10,5"></Setter>
+            <Setter Property="Background" Value="#404040"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <TextBlock FontWeight="Bold" Padding="20,0,4,0" DockPanel.Dock="Top" FontSize="30"  Background="#404040" Foreground="White" Height="40">
+       EDITAR DATOS</TextBlock>
+
+        <UniformGrid Columns="2" Margin="20,0,20,0">
+            <StackPanel Width="380" Margin="0,0,5,0">
+                <Label>Nombre:</Label>
+                <TextBox Text="{Binding SuperHeroe.Nombre}"></TextBox>
+                <Label>A. K. A.:</Label>
+                <TextBox Text="{Binding SuperHeroe.Aka}"></TextBox>
+                <Label>Ubicación actual:</Label>
+                <TextBox Text="{Binding SuperHeroe.Ubicacion}"></TextBox>
+                <Label>Habilidad(es):</Label>
+                <TextBox Text="{Binding SuperHeroe.Habilidades}"></TextBox>
+            </StackPanel>
+            <StackPanel Width="380">
+                <Label Margin="20,0,20,0">Origen:</Label>
+                <TextBox TextWrapping="Wrap" Margin="20,0,20,0" Height="170"  Text="{Binding SuperHeroe.Origen}"></TextBox>
+            </StackPanel>
+        </UniformGrid>
+        <Label Margin="20,0,20,0">Fotografía(URL):</Label>
+        <TextBox Margin="20,0,20,0" Text="{Binding SuperHeroe.Fotografia}"></TextBox>
+        <TextBlock TextAlignment="Center" Foreground="Red" FontSize="15" FontFamily="Bahnschrift"  Text="{Binding Mensaje}"></TextBlock>
+        <WrapPanel HorizontalAlignment="Center" Margin="5">
+            <Button Command="{Binding CancelarCommand}">Cancelar</Button>
+            <Button Command="{Binding GuardarCommand}" >Guardar</Button>
+            <!--<Button Content="Guardar">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="FontFamily" Value="Bahnschrift"></Setter>
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="Foreground" Value="White"></Setter>
+                            <Setter Property="FontWeight" Value="Bold"></Setter>
+                            <Setter Property="Padding" Value="5"></Setter>
+                            <Setter Property="Width" Value="100"></Setter>
+                            <Setter Property="Margin" Value="10,5"></Setter>
+                        <Setter Property="Background" Value="#404040"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Vista}" Value="Registrar">
+                                <Setter Property="Command" Value="{Binding AgregarCommand}"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Vista}" Value="Guardar">
+                                <Setter Property="Command" Value="{Binding GuardarCommand}"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>-->
+        </WrapPanel>
+    </StackPanel>
+</UserControl>
